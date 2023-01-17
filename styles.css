@@ -1,57 +1,159 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-
-
-
-
-
-
-
-/* Checkbox svg from https://codepen.io/rolchau/pen/vYwVMQ */
-
-.promoted-checkbox {
-    input:checked + label > svg {
-      // Firefox doesn't render svg's that is loading with the use tag if its been set to display: none and then toggled to display: block, so you have to use tricks like this to get it to render again:
-    height: 24px;
-    animation: draw-checkbox ease-in-out 0.2s forwards;
-    }
-    
-    label:active::after {
-    background-color: $grey-25;
-    }
-    
-    label {
-    color: $brand;
-    line-height: 40px;
-    cursor: pointer;
-    position: relative;
-    &:after {
-        content: "";
-        height: 40px;
-        width: 40px;
-        margin-right: 1rem;
-        float: left;
-        border: 2px solid $brand;
-        border-radius: 3px;
-        transition: 0.15s all ease-out;      
-    }
-    }
-    svg {
-        stroke: $brand;
-        stroke-width: 2px;
-        height: 0; //Firefox fix
-        width: 24px;
-        position: absolute;
-        left: -48px;
-        top: -4px;
-        stroke-dasharray: 33; //Firefox fix
-    }
+body {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    height: 100vh;
 }
 
-@keyframes draw-checkbox {
-    0% {
-        stroke-dashoffset: 33;
-    }
-    100% {
-        stroke-dashoffset: 0;
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-around;
+}
+
+.main-title  {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(auto-fill, 1fr);
+}
+
+.main-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(auto-fill, 1fr);
+}
+
+.book{
+    grid-column: 1/2;
+    grid-row: inherit;
+}
+
+.author {
+    grid-column: 2/3;
+    grid-row: inherit;
+
+}
+
+.pages {
+    grid-column: 3/4;
+    grid-row: inherit;
+
+}
+
+.removal {
+    grid-column: 4/5;
+    grid-row: inherit;
+
+}
+
+.sidebar {
+    padding: 20px 40px 20px 20px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/*Checkbox svg from https://www.30secondsofcode.org/css/s/custom-checkbox */
+
+.checkbox-symbol {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.checkbox-container {
+    box-sizing: border-box;
+    background: #ffffff;
+    color: #222;
+    height: 64px;
+    display: flex;
+    align-items: center;
+}
+
+  .checkbox-container * {
+    box-sizing: border-box;
+}
+
+.checkbox-input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.checkbox {
+    user-select: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+}
+
+.checkbox:not(:last-child) {
+    margin-right: 6px;
+}
+
+.checkbox:hover {
+    background: rgba(0, 119, 255, 0.06);
+}
+
+.checkbox span {
+    vertical-align: middle;
+    transform: translate3d(0, 0, 0);
+}
+
+.checkbox span:first-child {
+    position: relative;
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    transform: scale(1);
+    border: 1px solid #cccfdb;
+    transition: all 0.3s ease;
+}
+
+.checkbox span:first-child svg {
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    fill: none;
+    stroke: #fff;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: all 0.3s ease;
+    transform: translate3d(0, 0, 0);
+}
+
+.checkbox span:last-child {
+    padding-left: 8px;
+    line-height: 18px;
+}
+
+.checkbox:hover span:first-child {
+    border-color: #0077ff;
+}
+
+.checkbox-input:checked + .checkbox span:first-child {
+    background: #0077ff;
+    border-color: #0077ff;
+    animation: zoom-in-out 0.3s ease;
+}
+
+.checkbox-input:checked + .checkbox span:first-child svg {
+    stroke-dashoffset: 0;
+}
+@keyframes zoom-in-out {
+    50% {
+    transform: scale(0.9);
     }
 }

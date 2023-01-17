@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link href="styles.css" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="side-header">Library</div>
+        <form>
+            <div class="input-form">
+                <input id="title" type="text" name="title" autocomplete="off" required>
+                <span class="placeholder">What is the title of the book?</span>
+                <div class="validation-form">
+                    <p class="validation-text name">Please fill out this field.</p>
+                </div>
+            </div>
+
+            <div class="input-form">
+                <input id="title" type="text" name="author" autocomplete="off" required>
+                <span class="placeholder">Who is the author of the book?</span>
+                <div class="validation-form">
+                    <p class="validation-text name">Please fill out this field.</p>
+                </div>
+            </div>
+
+            <div class="input-form">
+                <input id="title" type="text" name="number" autocomplete="off" required>
+                <span class="placeholder">How many pages are there in this book?</span>
+                <div class="validation-form">
+                    <p class="validation-text name">Please enter a number larger than 0.</p>
+                </div>
+            </div>
+
+            <svg class="checkbox-symbol">
+                <symbol id="check" viewbox="0 0 12 10">
+                <polyline
+                    points="1.5 6 4.5 9 10.5 1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                ></polyline>
+                </symbol>
+            </svg>
+            
+            <div class="checkbox-container">
+                <input class="checkbox-input" id="checkbox" type="checkbox" />
+                <label class="checkbox" for="checkbox">
+                <span>
+                    <svg width="12px" height="10px">
+                        <use xlink:href="#check"></use>
+                    </svg>
+                </span>
+                <span>Have you read this before?</span>
+                </label>
+            </div>
+
+                <input type="button" value="ADD A NEW BOOK" id="add-book">
+
+        </form>
+
+    </div>
+    
+    <div class="main">
+        <div class="main-header">
+            <div class="books-read">Books Read: <span id="books-read"></span></div>
+            <div class="total-books">Total Books: <span id="total-books"></span></div>
+            <button class="delete-all">DELETE ALL</button>
+        </div>
+
+    <div class="main-body">
+        <div class="main-title">
+            <div class="main-book book">Book</div>
+            <div class="main-author author">Author</div>
+            <div class="main-pages pages">Page</div>
+            <div class="main-remove remove">Remove</div>
+        </div>
+        <div class="main-list">
+
+        </div>
+    </div>
+</body>
+</html>
