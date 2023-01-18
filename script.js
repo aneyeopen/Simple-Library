@@ -1,7 +1,5 @@
-const theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 295, true);
-const theGobbit = new Book('The Hobbit', 'J.R.R Tolkien', 295, false);
 
-let libraryArray = [theHobbit, theGobbit];
+let libraryArray = [];
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -27,20 +25,15 @@ function libraryTotals() {
     booksTotal.textContent = `Total Books: ${libraryArray.length}`;
 }
 
-var form = document.querySelector("form");
-form.onsubmit = function(){
-    author = document.getElementById("author").value;
-}
 
 function addToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
-    myLibrary.push(book);
-
+    libraryArray.push(book);
 }
 
 function showLibrary() {
 
-
+    libraryTotals();
     const bookList = document.querySelector('#table-body');
     bookList.textContent = '';
     for (let i = 0; i < libraryArray.length; i += 1) {
@@ -74,13 +67,44 @@ function showLibrary() {
         const bookDelete = document.createElement('td');
         var removeIMG  = document.createElement('img');
             removeIMG.src = './resources/trash-can.png';
+            removeIMG.classList.add('remove-book');
         bookDelete.appendChild(removeIMG);
         bookRow.appendChild(bookDelete);
     }
 }
 
+function formValidation(event) {
+    event.preventDefault();
+    const form = document.querySelector('form');
+    const title = document.getElementById('title');
+    const author = document.getElementById('author');
+    const pages = document.getElementById('pages');
+    const checkbox = document.getElementById('switch');
+    
+    if (checkbox.checked) {
+        addToLibrary(title.value, author.value, pages.value, true);
+    } else {
+        addToLibrary(title.value, author.value, pages.value, false);
+    }
+    form.reset();
+}
 
+function clickListen() {
+    document.addEventListener('click', (event) => {
+        const { target } = event;
+        const tr = target.parentNode.parentNode.rowIndex - 1;
+        if (target.id === 'submit') {
+            formValidation(event);
+        }else if (target.id === 'remove-all'){
+            libraryArray = [];
+        }else if (target.classList.contains('remove-book')) {
+            libraryArray.splice(tr, 1);
+        }
+        showLibrary();
+        
+    })
+}
 
-libraryTotals();
 showLibrary();
+clickListen();
 
